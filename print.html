@@ -1,0 +1,103 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+
+<html>
+
+<head>
+	<title>Print Page</title>
+	<script src="jquery/jquery-1.9.1.min.js"></script>
+	<script language="Javascript1.2">
+	  <!--
+	  function printpage() {
+	  window.print();
+	  }
+	  //-->
+	</script>
+</head>
+
+<body onload="printpage()">
+	<script type="text/javascript">
+		
+		var url = window.location.href.split('?=');
+		var urlData = url[1];
+		var printVars = urlData.split('~~');
+
+		//This will get the current date for the user
+		var d = new Date();
+   		var curr_date = d.getDate();
+    	var curr_month = d.getMonth() + 1;
+    	var curr_year = d.getFullYear();
+
+		for (var textPosition in printVars){
+			var pVar = printVars[textPosition];
+			
+			if (textPosition == 0) {
+				document.write('<div id="date">' + curr_month + "-" + curr_date + "-" + curr_year + '</div>');
+				document.write('<div id="title"><img src="logo.png" id="logo">' + '<h1>' + decodeURIComponent(pVar) + '</h1></div>');
+				document.write('<hr/>');
+			}//First Position. This will control what is in the header.
+			else if (textPosition % 2) {
+				document.write('<h3>' + decodeURIComponent(pVar) + '</h3>')
+			}//Every even Position. This will control the questions.
+			else {
+				document.write('<p>' + decodeURIComponent(pVar) + '</p>');
+				document.write('<br/>');
+			}//Every odd Position other than the first. this will control the users answers.
+		}
+		
+		
+	</script>
+	<style type="text/css">
+		body {
+  			font-family: Sans-Serif;
+  			padding-top: 10px;
+  			padding-left: 10px;
+		}
+		#title{overflow:auto;}
+		#logo{float:right;}
+		#date{
+			float:left;
+			display:inline-block;
+			position:absolute;
+			z-index:: 1;
+  			font-family: Sans-Serif;
+			color: #666666;
+			padding-left: 22px;
+		}
+		
+		h1 {
+			font-size:26px;
+			font-family: Sans-Serif;
+			padding-left: 19px;
+			margin-top: 27px;
+			}
+		h3 {
+			font-size:18px;
+  			font-family: Sans-Serif;
+			font-weight:600;
+			color: #444444;
+  			padding-left: 20px;
+		}
+		p {
+			font-size:14px;
+			-webkit-margin-before: 0.0em;
+			-webkit-margin-after: 0.0em;
+  			font-family: Sans-Serif;
+			color: #666666;
+			padding-left: 20px;
+		}
+		
+		hr {
+			display: block;
+			-webkit-margin-before: 0.5em;
+			-webkit-margin-after: 0.5em;
+			-webkit-margin-start: auto;
+			-webkit-margin-end: auto;
+			border-style: inset;
+			border-width: 1px;
+		}		
+	</style>
+	
+</body>
+
+</html>

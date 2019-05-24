@@ -1,0 +1,11 @@
+@font-face {
+font-family: 'Hansief Regular';
+font-style: Regular;
+src: local('Hansief Regular'), local('Hansief Regular'),
+url(hansief.otf) format('OpenType');
+    
+font-family: 'Tuesday Night Regular';
+font-style: Regular;
+src: local('Tuesday Night Regular'), local('Tuesday Night Regular'),
+url(TuesdayNight-Regular.otf) format('OpenType');
+}
